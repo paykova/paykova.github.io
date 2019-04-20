@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+<body>
+<header>
+    <th:block th:include="~{fragments/navbar}"></th:block>
+</header>
+<main class="mt-3 bg-kidcenter">
+    <h1 class="text-center text-dark">Edit Kid</h1>
+    <hr class="hr-2 bg-dark w-25">
+    <form class="form w-25 mx-auto" th:action="@{/kids/edit/{id}(id=${kidId})}" method="post" th:object="${bindingModel}" enctype="multipart/form-data">
+        <div class="form-group">
+            <label class="font-weight-bold" for="add-kid-name">Name</label>
+            <input type="text" class="form-control text-center" id="add-kid-name" name="name" th:value="${kid.name}">
+        </div>
+        <div class="form-group">
+            <label class="font-weight-bold" for="add-kid-description">Description</label>
+            <input type="text" class="form-control text-center" id="add-kid-description" name="description" th:value="${kid.description}">
+        </div>
+        <!--<div class="form-group">-->
+            <!--<label class="font-weight-bold" for="add-kid-birthdate">Birth Date</label>-->
+            <!--<input type="date" class="form-control" id="inputKidBirthDate" th:field="*{birthDate}">-->
+            <!--<input type="text" class="form-control text-center" id="add-kid-birthdate" name="birthdate" th:value="${kid.birthDate}">-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label class="font-weight-bold" for="add-kid-gender">Gender</label>-->
+            <!--<input type="text" class="form-control text-center" id="add-kid-gender" name="gender" th:value="${kid.gender}">-->
+        <!--</div>-->
+        <div class="form-group">
+            <label class="font-weight-bold" for="inputKidGender">Gender</label>
+            <select class="form-control text-center" id="inputKidGender" th:field="*{gender}">
+                <option th:each="gender : ${T(org.softuni.finalpoject.domain.entities.Gender).values()}"
+                        th:value="${gender}" th:text="${gender}"></option>
+            </select>
+        </div>
+        <label class="font-weight-bold" for="inputKidBirthDate">Birth Date</label>
+        <input type="date" class="form-control text-center" id="inputKidBirthDate" th:field="*{birthDate}">
+        <p></p>
+        <!--<div class="form-group">-->
+            <!--<label for="add-kid-languages" class="font-weight-bold">Languages</label>-->
+            <!--<select multiple="" class="form-control" id="add-kid-languages" name="languages">-->
+            <!--</select>-->
+        <!--</div>-->
+        <div class="form-group">
+            <label for="add-product-languages" class="font-weight-bold">Languages</label>
+            <select multiple="" class="form-control text-center" id="add-product-languages" name="languages">
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="add-product-sports" class="font-weight-bold">Sports</label>
+            <select multiple="" class="form-control text-center" id="add-product-sports" name="sports">
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="add-product-instruments" class="font-weight-bold">Instruments</label>
+            <select multiple="" class="form-control text-center" id="add-product-instruments" name="instruments">
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="add-product-otheractivities" class="font-weight-bold">Other Activities</label>
+            <select multiple="" class="form-control text-center" id="add-product-otheractivities" name="otheractivities">
+            </select>
+        </div>
+        <!--<div class="form-group">-->
+            <!--<label for="add-product-instruments" class="font-weight-bold">Instruments</label>-->
+            <!--<select multiple="" class="form-control" id="add-product-instruments" name="instruments">-->
+            <!--</select>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label for="add-kid-sports" class="font-weight-bold">Sport</label>-->
+            <!--<select multiple="" class="form-control" id="add-kid-sports" name="sports">-->
+            <!--</select>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label for="add-kid-otheractivities" class="font-weight-bold">Other Activities</label>-->
+            <!--<select multiple="" class="form-control" id="add-kid-otheractivities" name="otheractivities">-->
+            <!--</select>-->
+        <!--</div>-->
+        <hr class="hr-2 bg-dark w-25">
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn btn-success font-weight-bold text-white">Edit Kid</button>
+        </div>
+        <br/>
+    </form>
+</main>
+<footer>
+    <th:block th:include="~{fragments/footer}"></th:block>
+</footer>
+</body>
+<!--<script>-->
+    <!--fetch('/languages/fetch')-->
+        <!--.then((response) => response.json())-->
+    <!--.then((json) => {-->
+        <!--json.forEach((language) => $('#add-product-languages').append(`<option value="${language.id}">${language.name}</option>`));-->
+    <!--})-->
+    <!--.catch((err) => console.log(err));-->
+<!--</script>-->
+<!--<script>-->
+    <!--fetch('/sports/fetch')-->
+        <!--.then((response) => response.json())-->
+    <!--.then((json) => {-->
+        <!--json.forEach((sport) => $('#add-product-sports').append(`<option value="${sport.id}">${sport.name}</option>`));-->
+    <!--})-->
+    <!--.catch((err) => console.log(err));-->
+<!--</script>-->
+<!--<script>-->
+    <!--fetch('/instruments/fetch')-->
+        <!--.then((response) => response.json())-->
+    <!--.then((json) => {-->
+        <!--json.forEach((instrument) => $('#add-product-instruments').append(`<option value="${instrument.id}">${instrument.name}</option>`));-->
+    <!--})-->
+    <!--.catch((err) => console.log(err));-->
+<!--</script>-->
+<!--<script>-->
+    <!--fetch('/otheractivities/fetch')-->
+        <!--.then((response) => response.json())-->
+    <!--.then((json) => {-->
+        <!--json.forEach((otheractivity) => $('#add-product-otheractivities').append(`<option value="${otheractivity.id}">${otheractivity.name}</option>`));-->
+    <!--})-->
+    <!--.catch((err) => console.log(err));-->
+<!--</script>-->
+<script th:inline="javascript">
+    fetch('/languages/fetch')
+        .then((response) => response.json())
+    .then((json) => {
+        let languages = [[${kid.languages}]];
+    console.log(languages);
+    json.forEach((language) =>
+    $('#add-product-languages').append(
+        languages.includes(language.name)
+            ? `<option value="${language.id}" selected>${language.name}</option>`
+            : `<option value="${language.id}">${language.name}</option>`));
+    })
+    .catch((err) => console.log(err));
+</script>
+<script th:inline="javascript">
+    fetch('/sports/fetch')
+        .then((response) => response.json())
+    .then((json) => {
+        let sports = [[${kid.sports}]];
+    console.log(sports);
+    json.forEach((sport) =>
+    $('#add-product-sports').append(
+        sports.includes(sport.name)
+            ? `<option value="${sport.id}" selected>${sport.name}</option>`
+            : `<option value="${sport.id}">${sport.name}</option>`));
+    })
+    .catch((err) => console.log(err));
+</script>
+<script th:inline="javascript">
+    fetch('/instruments/fetch')
+        .then((response) => response.json())
+    .then((json) => {
+        let instruments = [[${kid.instruments}]];
+    console.log(instruments);
+    json.forEach((instrument) =>
+    $('#add-product-instruments').append(
+        instruments.includes(instrument.name)
+            ? `<option value="${instrument.id}" selected>${instrument.name}</option>`
+            : `<option value="${instrument.id}">${instrument.name}</option>`));
+    })
+    .catch((err) => console.log(err));
+</script>
+<script th:inline="javascript">
+    fetch('/otheractivities/fetch')
+        .then((response) => response.json())
+    .then((json) => {
+        let otheractivities = [[${kid.otheractivities}]];
+    console.log(otheractivities);
+    json.forEach((otheractivity) =>
+    $('#add-product-otheractivities').append(
+        otheractivities.includes(otheractivity.name)
+            ? `<option value="${otheractivity.id}" selected>${otheractivity.name}</option>`
+            : `<option value="${otheractivity.id}">${otheractivity.name}</option>`));
+    })
+    .catch((err) => console.log(err));
+</script>
+</html>
